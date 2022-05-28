@@ -4,7 +4,7 @@ import random
 import asyncio
 from pyrogram import Client, filters
 from pyrogram.errors import ChatAdminRequired, FloodWait
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from database.users_chats_db import db
 from info import ADMINS, LOG_CHANNEL, FILE_CAPTION, TARGET_CHANNEL, get_size
@@ -15,8 +15,6 @@ import base64
 logger = logging.getLogger(__name__)
 
 INDEX_FILES = {}
-
-IMAGE = ["https://te.legra.ph/file/f58032b4b41f5335e0a33.jpg"]
 
 @Client.on_message(filters.command("start") & filters.incoming & ~filters.edited)
 async def start(bot, message):
@@ -36,9 +34,8 @@ async def start(bot, message):
             InlineKeyboardButton('🔰 Main Group 🔰', url='https://t.me/KC_Films')
             ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(IMAGE),
-            caption="""Hello I am a Auto Forward Bot devoloped by @kcfilmss, I can forward files from a Public/Private Channel to a Public/Private Group/Channel.""",
+        await message.reply_text(
+            text="""Hello I am a Auto Forward Bot devoloped by @kcfilmss, I can forward files from a Public/Private Channel to a Public/Private Group/Channel.""",
             reply_markup=reply_markup,
             parse_mode='html'
         )
@@ -46,13 +43,12 @@ async def start(bot, message):
 
     if len(message.command) == 2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
-            InlineKeyboardButton('⚡️ Main Channel ⚡️', url='https://t.me/KCFilmss'),
-            InlineKeyboardButton('🔰 Main Group 🔰', url='https://t.me/KC_Films')
+            InlineKeyboardButton('⚡️ CREATER ⚡️', url='https://t.me/KCAjm'),
+            InlineKeyboardButton('ℹ️ 𝙷𝙴𝙻𝙿', callback_data='help')
             ]]
         reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply_photo(
-            photo=random.choice(IMAGE),
-            caption="""Hello I am a Auto Forward Bot devoloped by @kcfilmss, I can forward files from a Public/Private Channel to a Public/Private Group/Channel.""",
+        await message.reply_text(
+            text="""Hello I am a Auto Forward Bot devoloped by @kcfilmss, I can forward files from a Public/Private Channel to a Public/Private Group/Channel.""",
             reply_markup=reply_markup,
             parse_mode='html'
         )
@@ -124,3 +120,16 @@ async def start(bot, message):
             text=f"😎 All files have been successfully sent to TARGET CHANNEL, If not sent check your logs.\n\nForwarded:- {frwded}"
             )
         return
+
+
+@Client.on_callback_query()
+async def cb_handler(client, query: CallbackQuery):
+    data = query.data 
+    if data == "help":
+        await query.message.edit_text(
+            text=" /index   /start",
+        )
+
+
+
+
