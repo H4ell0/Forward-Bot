@@ -113,7 +113,7 @@ async def start(bot, message):
             if pling == 1:
                 await sts.edit_text(f"Forwarded:- <code>{frwded}</code>\nTotal :- <code>{pling}</code>")
                 pling -= 1
-            await asyncio.sleep(3)
+            await asyncio.sleep(1)
         await sts.delete()
         await bot.send_message(
             chat_id=message.chat.id,
