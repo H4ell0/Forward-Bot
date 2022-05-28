@@ -84,7 +84,7 @@ async def start(bot, message):
                     f_caption=FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
                 except Exception as e:
                     logger.exception(e)
-                    f_caption='@KCFilmss'
+                    f_caption=FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption= '' if f_caption is None else f_caption)
             if f_caption is None:
                 f_caption = f"{title}"
             try:
@@ -113,7 +113,7 @@ async def start(bot, message):
             if pling == 1:
                 await sts.edit_text(f"Forwarded:- <code>{frwded}</code>\nTotal :- <code>{pling}</code>")
                 pling -= 1
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.5)
         await sts.delete()
         await bot.send_message(
             chat_id=message.chat.id,
