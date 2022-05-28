@@ -30,8 +30,8 @@ async def start(bot, message):
         await bot.send_message(LOG_CHANNEL, "#NewUser")
     if len(message.command) != 2:
         buttons = [[
-            InlineKeyboardButton('⚡️ Main Channel ⚡️', url='https://t.me/KCFilmss'),
-            InlineKeyboardButton('🔰 Main Group 🔰', url='https://t.me/KC_Films')
+            InlineKeyboardButton('⚡️ CREATER ⚡️', url='https://t.me/KCAjm'),
+            InlineKeyboardButton('ℹ️ 𝙷𝙴𝙻𝙿', callback_data='help')
             ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_text(
